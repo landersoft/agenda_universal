@@ -1,0 +1,7 @@
+# Ignora los archivos relacionados a API keys
+.env
+
+#Igorar los temporales de la aplicacion
+*.pyc
+*.yml
+*.Dockerfile
