@@ -1,0 +1,52 @@
+name: CI para Flask + Mongo
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      mongo:
+        image: mongo:6.0
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd "mongosh --eval 'db.adminCommand(\"ping\")'" 
+          --health-interval 10s 
+          --health-timeout 5s 
+          --health-retries 5
+
+    env:
+      MONGO_URI: mongodb://localhost:27017/flaskdb
+
+    steps:
+      - name: Clonar el código
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Esperar que Mongo esté listo
+        run: |
+          for i in {1..10}; do
+            if mongosh --eval "db.adminCommand('ping')" &>/dev/null; then
+              echo "MongoDB está disponible"
+              break
+            fi
+            echo "Esperando MongoDB..."
+            sleep 3
+          done
+
+      - name: Ejecutar tests
+        run: pytest

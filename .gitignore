@@ -3,5 +3,5 @@
 
 #Igorar los temporales de la aplicacion
 *.pyc
-*.yml
+
 *.Dockerfile
