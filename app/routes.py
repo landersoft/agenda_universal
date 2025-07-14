@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, current_app
 
 bp = Blueprint("main", __name__)
 
+
 @bp.route("/")
 def index():
     collection = current_app.db["mensajes"]
