@@ -11,7 +11,7 @@ def create_app():
 
     mongo_uri = os.getenv("MONGO_URI")
     client = MongoClient(mongo_uri)
-    app.db = client["flaskdb"]
+    app.db = client["agenda"]
 
     from .routes import bp as main_bp
 
