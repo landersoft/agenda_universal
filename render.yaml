@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: agenda-universal-api
+    runtime: python
+    repo: https://github.com/tu_usuario/agenda_universal
+    branch: main
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn "app:create_app()"
+    envVars:
+      - key: MONGO_URI
+        sync: false
