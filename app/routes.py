@@ -13,9 +13,12 @@ def index():
 @bp.route("/test-db", methods=["GET"])
 def test_db_get():
     db = current_app.db
-    # collection = current_app.db["profesionales"]  # usa la colección que desees
-    documentos = list(db.profesionales.find({}, {"_id": 0}))  # sin mostrar _id
-    # docs = list(collection.find({}, {"_id": 0}))  # sin mostrar _id
+    # collection = current_app.db["profesionales"] 
+    # usa la colección que desees
+    documentos = list(db.profesionales.find({}, {"_id": 0}))  
+    # sin mostrar _id
+    # docs = list(collection.find({}, {"_id": 0}))  
+    # # sin mostrar _id
     return jsonify(documentos), 200
 
 
@@ -39,7 +42,7 @@ def test_db_post():
 
 
 @bp.route("/especialidades", methods=["GET"])
-def test_db_get():
+def especialidades():
     db = current_app.db
     # collection = current_app.db["profesionales"]  # usa la colección que desees
     documentos = list(
