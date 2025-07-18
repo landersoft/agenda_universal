@@ -100,5 +100,5 @@ def insert_db():
             "descripcion": item["description"],
             "taxonomia": item["taxonomy"]
         }
-        result = db.profesionales.insert_one(nuevo_documento)
+        result = db.especialidades.insert_one(nuevo_documento)
     return jsonify({"mensaje": "Documento insertado", "id": str(result.inserted_id)}), 201
