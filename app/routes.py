@@ -41,7 +41,7 @@ def test_db_post():
     )
 
 
-@bp.route("/especialidades", methods=["GET"])
+@bp.route("/especialidades")
 def especialidades():
     db = current_app.db
     # collection = current_app.db["profesionales"]  # usa la colección que desees
