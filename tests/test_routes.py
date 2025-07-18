@@ -14,4 +14,6 @@ def test_insert_db():
         response = client.get("/insert-db")
         assert response.status_code == 201
         data = response.get_json()
-        assert "inserted" in data
+        assert "mensaje" in data
+        assert data["mensaje"] == "Documento insertado"
+        assert "id" in data
