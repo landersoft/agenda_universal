@@ -4,4 +4,4 @@
 #Igorar los temporales de la aplicacion
 *.pyc
 
-*.Dockerfile
+Dockerfile
