@@ -4,5 +4,6 @@ python-dotenv
 pytest
 black
 flake8
+pyswagger
 
 
