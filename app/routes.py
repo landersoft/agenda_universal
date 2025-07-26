@@ -47,7 +47,10 @@ def especialidades():
     # collection = current_app.db["profesionales"]  # usa la colección que desees
     documentos = list(db.especialidades.find({}, {"_id": 0}))  # sin mostrar _id
     # docs = list(collection.find({}, {"_id": 0}))  # sin mostrar _id
-    return jsonify(documentos), 200
+    if documentos:
+        return jsonify(documentos), 200
+    else:
+        return jsonify({"mensaje": "No hay especialidades disponibles"}), 404
 
 
 @bp.route("/insert-db")
