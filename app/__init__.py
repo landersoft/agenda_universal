@@ -13,8 +13,22 @@ def create_app():
     client = MongoClient(mongo_uri)
     app.db = client["agenda"]
 
-    from .routes import bp as main_bp
+    #from .routes import bp as main_bp
 
-    app.register_blueprint(main_bp)
+    #app.register_blueprint(main_bp)
+
+
+      # Registrar Blueprints
+    #from app.routes.index import bp as index_bp
+    from app.routes.especialidades import especialidades_bp as especialidades_bp
+    from .routes.index import bp as index_bp
+    #from app.routes.profesionales import bp as profesionales_bp
+
+    #app.register_blueprint(index_bp)  # Sin prefix, para que maneje "/"
+    app.register_blueprint(index_bp)
+    app.register_blueprint(especialidades_bp, url_prefix="/")
+    #app.register_blueprint(profesionales_bp, url_prefix="/profesionales")
+    
+    
 
     return app
