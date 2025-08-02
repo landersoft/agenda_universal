@@ -18,43 +18,42 @@ def index():
 
 
 @especialidades_bp.route("/especialidades", methods=["GET"])
-@swag_from({
-    'tags': ['Especialidades'],
-    'summary': 'Obtener todas las especialidades',
-    'description': 'Este endpoint devuelve una lista de todas las especialidades registradas en la base de datos.',
-    'responses': {
-        200: {
-            'description': 'Lista de especialidades',
-            'content': {
-                'application/json': {
-                    'example': [{
-                        "_id": "60c72b2f9b1e8d001c8e4a2f",
-                        "nombre": "Cardiología",
-                        "codigo": "CAR001",
-                        "descripcion": "Especialidad del corazón",
-                        "taxonomia": ["corazón", "cardiología"]
-                        },
-                        {
-                            "_id": "60c72b2f9b1e8d001c8e4a30",
-                            "nombre": "Neurología",
-                            "codigo": "NEU001",
-                            "descripcion": "Especialidad del sistema nervioso",
-                            "taxonomia": ["sistema nervioso", "neurología"]
-                        }
+@swag_from(
+    {
+        "tags": ["Especialidades"],
+        "summary": "Obtener todas las especialidades",
+        "description": "Este endpoint devuelve una lista de todas las "
+        "especialidades registradas en la base de datos.",
+        "responses": {
+            200: {
+                "description": "Lista de especialidades",
+                "content": {
+                    "application/json": {
+                        "example": [
+                            {
+                                "_id": "60c72b2f9b1e8d001c8e4a2f",
+                                "nombre": "Cardiología",
+                                "codigo": "CAR001",
+                                "descripcion": "Especialidad del corazón",
+                                "taxonomia": ["corazón", "cardiología"],
+                            },
+                            {
+                                "_id": "60c72b2f9b1e8d001c8e4a30",
+                                "nombre": "Neurología",
+                                "codigo": "NEU001",
+                                "descripcion": "Especialidad del sistema nervioso",
+                                "taxonomia": ["sistema nervioso", "neurología"],
+                            },
                         ]
                     }
-                }
+                },
+            },
+            404: {"description": "No hay especialidades registradas"},
         },
-        404: {
-            'description': 'No hay especialidades registradas'
-        }
     }
-})
-
-
-
+)
 def obtener_especialidades():
-    
+
     db = current_app.db
 
     """Endpoint para obtener todas las especialidades"""

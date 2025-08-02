@@ -11,7 +11,6 @@ def create_app():
     app = Flask(__name__)
     swagger = Swagger(app)
 
-
     mongo_uri = os.getenv("MONGO_URI")
     client = MongoClient(mongo_uri)
     app.db = client["agenda"]
