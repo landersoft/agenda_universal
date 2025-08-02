@@ -41,7 +41,7 @@ def test_db_post():
     )
 
 
-@bp.route("/especialidades")
+"""@bp.route("/especialidades")
 def especialidades():
     db = current_app.db
     # collection = current_app.db["profesionales"]  # usa la colección que desees
@@ -50,7 +50,7 @@ def especialidades():
     if documentos:
         return jsonify(documentos), 200
     else:
-        return jsonify({"mensaje": "No hay especialidades disponibles"}), 404
+        return jsonify({"mensaje": "No hay especialidades disponibles"}), 404"""
 
 
 @bp.route("/insert-db")

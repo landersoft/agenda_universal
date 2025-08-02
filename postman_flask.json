@@ -1,0 +1,45 @@
+{
+  "info": {
+    "name": "CRUD Especialidades",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Crear especialidad",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Cardiología\"\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:5000/especialidades/",
+          "protocol": "http",
+          "host": ["127.0.0.1"],
+          "port": "5000",
+          "path": ["especialidades", ""]
+        }
+      }
+    },
+    {
+      "name": "Listar especialidades",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:5000/especialidades/",
+          "protocol": "http",
+          "host": ["127.0.0.1"],
+          "port": "5000",
+          "path": ["especialidades", ""]
+        }
+      }
+    }
+  ]
+}
