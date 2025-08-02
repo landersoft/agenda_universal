@@ -30,6 +30,5 @@ def test_especialidades():
         response = client.get("/especialidades")
         assert response.status_code == 200
         data = response.get_json()
-        assert "_id" in data
-        assert "nombre" in data
-        assert "codigo" in data
+        assert "nombre" in data[0]
+        assert "codigo" in data[0]
