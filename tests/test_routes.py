@@ -11,9 +11,9 @@ def test_index():
 def test_insert_db():
     app = create_app()
     with app.test_client() as client:
-        response = client.get("/insert-db")
-        assert response.status_code == 201
+        response = client.get("/especialidades")
+        assert response.status_code == 200
         data = response.get_json()
-        assert "mensaje" in data
-        assert data["mensaje"] == "Documento insertado"
-        assert "id" in data
+        assert "_id" in data
+        assert "nombre" in data
+        assert "codigo" in data
