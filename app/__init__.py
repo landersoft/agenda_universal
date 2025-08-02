@@ -2,12 +2,15 @@ from flask import Flask
 from pymongo import MongoClient
 import os
 from dotenv import load_dotenv
+from flasgger import Swagger
 
 load_dotenv()
 
 
 def create_app():
     app = Flask(__name__)
+    swagger = Swagger(app)
+
 
     mongo_uri = os.getenv("MONGO_URI")
     client = MongoClient(mongo_uri)
