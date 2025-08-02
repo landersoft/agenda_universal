@@ -3,6 +3,7 @@ from flask import Blueprint, jsonify, request, current_app
 # from bson import ObjectId
 from app.models.especialidad import EspecialidadInput  # EspecialidadOutput
 from pydantic import ValidationError
+import time
 
 
 especialidades_bp = Blueprint("especialidades", __name__)
@@ -44,6 +45,7 @@ def crear_especialidad():
         "nombre": data.nombre,
         "descripcion": data.descripcion,
         "taxonomia": data.taxonomia or [],
+        "created_at": time.time()
     }
 
     resultado = db.especialidades.insert_one(nueva)
@@ -78,6 +80,7 @@ def actualizar_especialidad():
                 "nombre": data.nombre,
                 "descripcion": data.descripcion,
                 "taxonomia": data.taxonomia or [],
+                "updated_at": time.time(),
             }
         },
     )
