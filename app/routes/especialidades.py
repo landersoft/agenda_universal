@@ -45,7 +45,7 @@ def crear_especialidad():
         "nombre": data.nombre,
         "descripcion": data.descripcion,
         "taxonomia": data.taxonomia or [],
-        "created_at": time.time()
+        "created_at": time.time(),
     }
 
     resultado = db.especialidades.insert_one(nueva)
