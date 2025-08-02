@@ -381,5 +381,3 @@ def serialize_data(schema_class: Schema, data: Dict[str, Any]) -> Dict[str, Any]
     """
     schema = schema_class()
     return schema.dump(data)
-
-

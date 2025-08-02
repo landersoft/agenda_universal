@@ -1,7 +1,8 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint  # jsonify
 
-bp = Blueprint('index', __name__)
+bp = Blueprint("index", __name__)
 
-@bp.route('/')
+
+@bp.route("/")
 def home():
     return "<h2>API de Agenda Médica v1</h2>"
