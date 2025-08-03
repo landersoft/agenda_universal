@@ -1,0 +1,44 @@
+tags:
+  - Especialidades
+summary: Crear una nueva especialidad
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          nombre:
+            type: string
+            description: Nombre de la especialidad
+          codigo:
+            type: string
+            description: Código de la especialidad
+          description:
+            type: string
+            description: Descripción de la especialidad
+          taxonomia:
+            type: string
+            description: Taxonomías de la especialidad 
+      required:
+        - nombre
+        - codigo
+      example:
+        nombre: Cardiología
+        codigo: CAR-001
+        description: Especialidad médica que se ocupa del diagnóstico y tratamiento de enfermedades del corazón.
+        taxonomia: ["Cardiología Clínica", "Cardiología Intervencionista"]
+
+responses:
+  201:
+    description: Especialidad creada exitosamente
+    content:
+      application/json:
+        example:
+          mensaje: "Especialidad creada exitosamente"
+          id: "60c72b2f9b1e8a001c8e4d3a"
+          nombre: "Cardiología"
+          codigo: "CAR-001"
+          created_at: "2023-10-01T12:00:00Z"
+  400:
+    description: description: Faltan datos o el nombre ya existe

@@ -3,8 +3,11 @@ from pymongo import MongoClient
 import os
 from dotenv import load_dotenv
 from flasgger import Swagger
+from flask_jwt_extended import JWTManager
 
 load_dotenv()
+
+
 
 
 def create_app():
@@ -15,20 +18,26 @@ def create_app():
     client = MongoClient(mongo_uri)
     app.db = client["agenda"]
 
-    # from .routes import bp as main_bp
+    app.config["SECRET_KEY"] = "superclave_123"
 
-    # app.register_blueprint(main_bp)
+    jwt = JWTManager(app)
 
     # Registrar Blueprints
-    # from app.routes.index import bp as index_bp
-    from app.routes.especialidades import especialidades_bp as especialidades_bp
-    from .routes.index import bp as index_bp
+    
+    
+    
 
-    # from app.routes.profesionales import bp as profesionales_bp
+    
 
     # app.register_blueprint(index_bp)  # Sin prefix, para que maneje "/"
+    from .routes.index import bp as index_bp
     app.register_blueprint(index_bp)
+
+    from app.routes.especialidades import especialidades_bp as especialidades_bp
     app.register_blueprint(especialidades_bp, url_prefix="/")
-    # app.register_blueprint(profesionales_bp, url_prefix="/profesionales")
+
+    from .routes.auth import auth_bp as auth_bp
+    app.register_blueprint(auth_bp, url_prefix="/auth")
+   
 
     return app

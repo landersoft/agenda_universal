@@ -7,5 +7,6 @@ flake8
 pyswagger
 pydantic
 flasgger
+Flask-JWT-Extended
 
 

@@ -5,6 +5,8 @@ from app.models.especialidad import EspecialidadInput  # EspecialidadOutput
 from pydantic import ValidationError
 from flasgger import swag_from
 import time
+import datetime
+from flask_jwt_extended import jwt_required
 
 
 especialidades_bp = Blueprint("especialidades", __name__)
@@ -52,8 +54,10 @@ def index():
         },
     }
 )
-def obtener_especialidades():
 
+@jwt_required()
+def obtener_especialidades():
+    
     db = current_app.db
 
     """Endpoint para obtener todas las especialidades"""
@@ -90,6 +94,7 @@ def crear_especialidad():
                 "id": str(resultado.inserted_id),
                 "nombre": data.nombre,
                 "codigo": data.codigo,
+                "created_at": datetime.datetime.fromtimestamp(nueva["created_at"]).isoformat(),
             }
         ),
         201,
