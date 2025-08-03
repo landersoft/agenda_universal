@@ -1,5 +1,6 @@
 from app import create_app
 from flask import current_app
+import json
 
 
 def test_index():
@@ -24,10 +25,23 @@ def test_insert_db():
         )
 
 
+def obtener_token_de_prueba(client):
+
+    response = client.post(
+        "/auth/login", json={"username": "rodrigo", "password": "rodrigo123"}
+    )
+    data = json.loads(response.data)
+    return data["access_token"]
+
+
 def test_especialidades():
     app = create_app()
     with app.test_client() as client:
-        response = client.get("/especialidades")
+
+        token = obtener_token_de_prueba(client)
+        headers = {"Authorization": "Bearer {}".format(token)}
+        # Probamos el endpoint de obtener especialidades
+        response = client.get("/especialidades", headers=headers)
         assert response.status_code == 200
         data = response.get_json()
         assert "nombre" in data[0]
