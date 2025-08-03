@@ -8,8 +8,6 @@ from flask_jwt_extended import JWTManager
 load_dotenv()
 
 
-
-
 def create_app():
     app = Flask(__name__)
     swagger = Swagger(app)
@@ -23,21 +21,18 @@ def create_app():
     jwt = JWTManager(app)
 
     # Registrar Blueprints
-    
-    
-    
-
-    
 
     # app.register_blueprint(index_bp)  # Sin prefix, para que maneje "/"
     from .routes.index import bp as index_bp
+
     app.register_blueprint(index_bp)
 
     from app.routes.especialidades import especialidades_bp as especialidades_bp
+
     app.register_blueprint(especialidades_bp, url_prefix="/")
 
     from .routes.auth import auth_bp as auth_bp
+
     app.register_blueprint(auth_bp, url_prefix="/auth")
-   
 
     return app

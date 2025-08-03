@@ -54,10 +54,9 @@ def index():
         },
     }
 )
-
 @jwt_required()
 def obtener_especialidades():
-    
+
     db = current_app.db
 
     """Endpoint para obtener todas las especialidades"""
@@ -94,7 +93,9 @@ def crear_especialidad():
                 "id": str(resultado.inserted_id),
                 "nombre": data.nombre,
                 "codigo": data.codigo,
-                "created_at": datetime.datetime.fromtimestamp(nueva["created_at"]).isoformat(),
+                "created_at": datetime.datetime.fromtimestamp(
+                    nueva["created_at"]
+                ).isoformat(),
             }
         ),
         201,
